@@ -1,4 +1,3 @@
-https://api.seatgeek.com/2/events?client_id=MTU4NDgzNTh8MTU1MzEzMjIxOC4xNg
 
 var city = "";
 // console.log("test" + city);
@@ -6,9 +5,11 @@ var city = "";
 // function for displaying event images
 
 function eventImages() {
-    city = $("#city").val().toLowerCase();
+    city = $("#city-input").val();
+    console.log(city);
     var queryURL = "https://api.seatgeek.com/2/events?q=" + city + "&client_id=MTU4NDgzNTh8MTU1MzEzMjIxOC4xNg";
     console.log(city);
+    console.log("test");
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -32,7 +33,7 @@ function eventImages() {
             newFigure.append(newImg, newCap);
             var newLink = $("<a>").html(newFigure);
             newLink.attr("href", eventLink);
-            $(".test").append(newLink);
+            $("#searching-field").append(newLink);
         }
     })
 }
@@ -40,4 +41,8 @@ function eventImages() {
 
 
 
-$("#search").on("click", eventImages);
+$("#search").on("click", function(){
+    event.preventDefault();
+    console.log("clicked");
+    eventImages();
+});
