@@ -1,5 +1,54 @@
-.jumbotron {
-    background-image: url("../images/gno.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #ffffff;
+    }
+
+.container {
+    position: relative;
+    text-align: center;
 }
+
+.bottom-left {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+ 
+  h1 {
+    font-family: 'Rock Salt';
+    margin: 0;
+    white-space: nowrap;
+    font-size: 70px;
+    text-align: center;
+    color: #000000;
+    -webkit-text-stroke-width: .5px;
+    -webkit-text-stroke-color: #c5b358; 
+}
+
+h2 {
+    font-family: 'Rock Salt';
+    font-size: 30px;
+    padding: 20px;
+    color: #c5b358;
+    text-align: center;
+    margin-bottom: 3%;
+}
+
+.control-label, .form-check {
+    color: #000000;
+    padding: 15px;
+}
+
+.btn {
+    background-color:#c5b358;
+}
+
+.form-inline, .form-group {
+    background-color: #606266;
+}
+
+#form {
+    color: #000000;
+    }
+    
