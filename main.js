@@ -1,11 +1,13 @@
 
 var city = "";
-// console.log("test" + city);
+var urlPool = [];
+var captionPool = [];
+var linkPool = [];
 
-// function for displaying event images
+// function for getting links, urls and captions, and display
 
-function eventImages() {
-    city = $("#city-input").val();
+function eventGet() {
+    
     console.log(city);
     var queryURL = "https://api.seatgeek.com/2/events?q=" + city + "&client_id=MTU4NDgzNTh8MTU1MzEzMjIxOC4xNg";
     console.log(city);
@@ -14,8 +16,10 @@ function eventImages() {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
+        urlPool = [];
+        captionPool = [];
+        linkPool = [];
         for (var i=0; i<8; i++) {
-            // getting data
             var imgURL = response.events[i].performers[0].image;
             if(imgURL === null){
                 console.log("haha");
@@ -24,25 +28,43 @@ function eventImages() {
             console.log(imgURL);
             var caption = response.events[i].title;
             var eventLink = response.events[i].url;
-            // writing to html
-            var newFigure = $("<figure>");
-            var newImg = $("<img>");
-            newImg.attr("src", imgURL);
-            newImg.attr("class", "event-thumb");
-            var newCap = $("<figcaption>").text(caption);
-            newFigure.append(newImg, newCap);
-            var newLink = $("<a>").html(newFigure);
-            newLink.attr("href", eventLink);
-            $("#searching-field").append(newLink);
+            urlPool.push(imgURL);
+            captionPool.push(caption);
+            linkPool.push(eventLink);
         }
+        console.log("display");
+        display();
     })
 }
 
-
+// function for writing to html using data in arrays
+function display() {
+    $(".seatgeek").empty();
+    for (var j = 0; j < 8; j++) {
+        // console.log(urlPool[j]);
+        var newFigure = $("<figure>");
+        var newImg = $("<img>");
+        newImg.attr("src", urlPool[j]);
+        newImg.attr("class", "event-thumb");
+        var newCap = $("<figcaption>").text(captionPool[j]);
+        newFigure.append(newImg, newCap);
+        var newLink = $("<a>").html(newFigure);
+        newLink.attr("href", linkPool[j]);
+        $(".seatgeek").append(newLink);
+    }
+}
 
 
 $("#search").on("click", function(){
     event.preventDefault();
-    console.log("clicked");
-    eventImages();
+    city = $("#city-input").val();
+    eventGet();
+    localStorage.clear();
+    localStorage.setItem("cityname", city);
 });
+// on page load
+city = localStorage.getItem("cityname");
+if(city != ""){
+    eventGet();
+}
+
