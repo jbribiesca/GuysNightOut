@@ -23,7 +23,7 @@ function eventGet() {
             var imgURL = response.events[i].performers[0].image;
             if(imgURL === null){
                 console.log("haha");
-                imgURL = "https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image";
+                imgURL = "https://imgplaceholder.com/280x210/ff7f7f/333333/fa-image";
             }
             console.log(imgURL);
             var caption = response.events[i].title;
@@ -45,7 +45,7 @@ function display() {
         var newFigure = $("<figure>");
         var newImg = $("<img>");
         newImg.attr("src", urlPool[j]);
-        newImg.attr("class", "event-thumb");
+        newImg.attr("class", "event-thumb figure-img img-fluid rounded");
         var newCap = $("<figcaption>").text(captionPool[j]);
         newFigure.append(newImg, newCap);
         var newLink = $("<a>").html(newFigure);
