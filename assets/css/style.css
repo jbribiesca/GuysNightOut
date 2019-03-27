@@ -51,4 +51,38 @@ h2 {
 #form {
     color: #000000;
     }
-    
+
+/* add by Jeremy */
+.seatgeek-outer{
+    background-color: rgb(198,180,96);
+    overflow: auto;
+    /* height: 640px; */
+    margin: 10px 0 10px 0;
+}
+
+.seatgeek{
+    padding-top: 10px;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(10, auto);
+    /* grid-template-rows: minmax(150px, 1fr); */
+  }
+
+/* .seatgeek{
+    margin: auto;
+    background-color: aquamarine;
+    width: 80%;
+} */
+
+figure{
+    width: 280px;
+    display: inline-block;
+    margin: 5px;
+    padding: 15px;
+    background-color: rgb(100, 100, 80, 0.5);
+}
+figcaption{
+    color: #c5b358;
+    overflow: hidden;
+}
+/* add by Jeremy */
