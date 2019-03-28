@@ -27,7 +27,7 @@
 
 
         <form class="form-inline">
-            <div class="row">
+            <div class="row head">
                 <div class="form-group">
                     <label for="date-input" class="control-label">Date</label>
                     <div>
@@ -49,34 +49,37 @@
 
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox">Concerts
+                        <input class="form-check-input" type="checkbox">Events
                     </label>
                 </div>
-                <div class="form-check form-check-inline">
+                <!-- <div class="form-check form-check-inline">
                     <label class="form-check-label">
                         <input class="form-check-input" type="checkbox">Sports
                     </label>
-                </div>
+                </div> -->
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox">Restaurants
+                        <input class="form-check-input" type="checkbox">Restaurants and Bars
                     </label>
                 </div>
-                <div class="form-check form-check-inline">
+                <!-- <div class="form-check form-check-inline">
                     <label class="form-check-label">
                         <input class="form-check-input" type="checkbox">Bars
                     </label>
-                </div>
+                </div> -->
 
                 <button class="btn btn-primary" id="search" style="float:right">Search</button>
 
             </div>
         </form>
-        <h2>#GuysNightOut</h2>
 
-        <div class="row seatgeek">
-
+        <div class="row">
+            <div class="col-md-12 seatgeek-outer">
+                <div class="seatgeek"></div>
+            </div>
         </div>
+
+        <h2>#GuysNightOut</h2>
 
         <ul class="juicer-feed" data-feed-id="guysnightout"></ul>
 
@@ -88,7 +91,7 @@
         <footer>
 
             <form class="form-inline">
-                <div class="row">
+                <div class="row head">
                     <div class="form-group">
                         <label for="emailAddress" class="label-email">Enter Your Email Address to Receive Exclusive Guys
                             Night Out Deals:&nbsp;&nbsp;&nbsp;

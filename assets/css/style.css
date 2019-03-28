@@ -9,16 +9,16 @@ body {
     text-align: center;
 }
 
-.bottom-left {
+/* .bottom-left {
     position: absolute;
     bottom: 10px;
     left: 10px;
-  }
+  } */
  
   h1 {
     font-family: 'Rock Salt';
-    margin: 0;
-    white-space: nowrap;
+    /* margin: 0;
+    white-space: nowrap; */
     font-size: 70px;
     text-align: center;
     color: #000000;
@@ -51,4 +51,75 @@ h2 {
 #form {
     color: #000000;
     }
-    
+
+/* add by Jeremy */
+div{
+    border-radius: 5px;
+}
+
+.seatgeek-outer{
+    background-color: rgb(198,180,96);
+    overflow: auto;
+    /* height: 640px; */
+    margin: 10px 0 10px 0;
+    background-image: linear-gradient(rgb(198,180,96,0.2), rgb(200, 200, 200));
+}
+
+.seatgeek{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(10, auto);
+    /* grid-template-rows: minmax(150px, 1fr); */
+  }
+
+/* .seatgeek{
+    margin: auto;
+    background-color: aquamarine;
+    width: 80%;
+} */
+
+figure{
+    width: 280px;
+    display: inline-block;
+    margin: 5px;
+    padding: 15px;
+    background-color: rgb(100, 100, 80, 0.2);
+    border-radius: 5px;
+    background-image: linear-gradient(rgb(100, 100, 80, 0.2),rgb(50,50,50));
+}
+figcaption{
+    color: #c5b358;
+    overflow: hidden;
+}
+
+.performer{
+    height: 36px;
+}
+
+.venue{
+    color: white;
+    font-size: 12px;
+    font-style: italic;
+    padding: 0;
+    margin: 0;
+    margin-top: 15px;
+}
+
+.form-inline{
+    /* background-color: green; */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.head{
+    padding: 0;
+    margin: 0;
+}
+
+.form-check{
+    margin-left: 20px;
+}
+
+/* add by Jeremy */
