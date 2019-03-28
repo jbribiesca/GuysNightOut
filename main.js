@@ -1,8 +1,12 @@
-
 var city = "";
 var urlPool = [];
 var captionPool = [];
 var linkPool = [];
+var geocodes = "";
+var restaurantNames = [];
+var restaurantImages = [];
+var googlePlace = [];
+
 
 // function for getting links, urls and captions, and display
 
@@ -35,10 +39,51 @@ function eventGet() {
             linkPool.push(eventLink);
             venuePool.push(location);
         }
-        console.log("display");
         display();
+        googleGeo();
     })
 }
+
+function googleGeo(){
+    var googleURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + city + "&sensor=false&key=AIzaSyBut7sBJR44gD7vF_X4xT9A9Bp_3RsGnKg";
+
+    $.ajax({
+        url: googleURL,
+        method: "GET"
+    }).then(function (response){
+        geocodes = [];
+        geocodes = response.results[0].geometry.location.lat + "," + response.results[0].geometry.location.lng
+        googleResults();
+    })
+}
+
+function googleResults(){
+
+
+    var placesURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + geocodes + "&radius=1500&type=restaurant&key=AIzaSyBut7sBJR44gD7vF_X4xT9A9Bp_3RsGnKg"
+
+    $.ajax({
+        url: placesURL,
+        method: "GET"
+    }).then(function (response){
+        restaurantNames = [];
+        restaurantImages = [];
+        googlePlace = [];
+
+    
+        for (i = 0; i < 8; i++){
+            var names = response.results[i].name
+            var images = response.results[i].icon
+            var placeid = response.results[i].place_id
+            restaurantNames.push(names)
+            restaurantImages.push(images)
+            googlePlace.push(placeid)
+        }
+
+        displayGoogle();
+    })
+}
+
 
 // function for writing to html using data in arrays
 function display() {
@@ -62,6 +107,22 @@ function display() {
     }
 }
 
+function displayGoogle() {
+    $(".googleplaces").empty();
+    for (k = 0; k < 8; k++){
+        var newFigure = $("<figure>");
+        var newImg = $("<img>");
+        newImg.attr("src", restaurantImages[k]);
+        newImg.attr("class", "event-thumb figure-img img-fluid rounded");
+        var newCapRes = $("<figcaption>").text(restaurantNames[k]);
+        newCapRes.attr("class", "restaurant");
+        newFigure.append(newImg, newCapRes);
+        var newLink = $("<a>").html(newFigure);
+        newLink.attr("href", "https://www.google.com/maps/place/?q=place_id:" + googlePlace[k]);
+        $(".googleplaces").append(newLink)
+    }
+
+}
 
 $("#search").on("click", function(){
     event.preventDefault();
@@ -75,4 +136,42 @@ city = localStorage.getItem("cityname");
 if(city != ""){
     eventGet();
 }
+
+// FIREBASE DATA BELOW //
+
+$(document).ready(function () {
+
+    // INITIALIZE FIREBASE
+       var config = {
+           apiKey: "AIzaSyCZ1DDxRmJTZf6skIyVRrwcyXE6O7A62SM",
+           authDomain: "guys-night-out.firebaseapp.com",
+           databaseURL: "https://guys-night-out.firebaseio.com",
+           projectId: "guys-night-out",
+           storageBucket: "guys-night-out.appspot.com",
+           messagingSenderId: "633021285285"
+           };
+    
+       firebase.initializeApp(config);
+    
+    
+    // VARIABLE FOR FIREBASE DATABASE
+       var database = firebase.database();
+    
+    
+    // CAPTURE BUTTON CLICK
+       $("#emailAddress").on("click", function (event) {
+           event.preventDefault();
+    
+    // CAPTURE VALUES FROM TEXT BOXES
+       var emailAddress = $("#emailAddress-text").val().trim();
+    
+    
+    // CODE FOR PUSH TO FIREBASE
+       database.ref().push({
+           emailAddress: emailAddress
+           });
+    });
+    
+    });
+
 
