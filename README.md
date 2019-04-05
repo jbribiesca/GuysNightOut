@@ -1,5 +1,7 @@
 # GuysNightOut
 
+Deployed code: https://jbribiesca.github.io/GuysNightOut/
+
 This was our group project.
 
 # The Problem
